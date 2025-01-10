@@ -1,0 +1,33 @@
+https://www.linuxquestions.org/questions/showthread.php?p=6331391#post6331391
+
+
+
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+ Originally Posted by colorpurple21859 View Post
+Did you add the osprober line to /etc/default/grub
+
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DEFAULT="Windows 10"
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="crashkernel=auto rhgb quiet"
+GRUB_DISABLE_RECOVERY="true"
+GRUB_DISABLE_OS_PROBER=false
+
+
+add this to /etc/grub.d/40_custom
+
+
+menuentry 'Windows 10' --class windows {
+set root=(hd0,1)
+ntldr /bootmgr
+boot
+}
+
+
+
+grub2-mkconfig -o /boot/grub2/grub.cfg

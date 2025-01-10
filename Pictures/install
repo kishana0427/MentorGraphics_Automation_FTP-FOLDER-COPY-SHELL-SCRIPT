@@ -1,0 +1,2 @@
+yum install ld-linux.so.2 -y
+yum install libXScrnSaver -y
